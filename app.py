@@ -43,10 +43,9 @@ def init_rag_system():
 
     # 1. โหลดไฟล์จาก Drive
     try:
-        loader = GoogleDriveLoader(
+       loader = GoogleDriveLoader(
             folder_id=os.getenv('GOOGLE_DRIVE_FOLDER_ID'),
-            credentials_path=auth_path,
-            token_path="token.json", 
+            service_account_key=auth_path, # <--- เปลี่ยนชื่อตัวแปรให้ถูกต้อง
             recursive=True
         )
         docs = loader.load()
@@ -106,4 +105,5 @@ def handle_message(event):
 
 if __name__ == "__main__":
     app.run()
+
 
